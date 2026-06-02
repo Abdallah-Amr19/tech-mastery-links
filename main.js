@@ -77,6 +77,67 @@ document.querySelectorAll(".social-btn").forEach((btn) => {
 });
 
 /* ================================================
+   2a. CALL / WHATSAPP CONTACT OPTIONS
+   Shows three phone choices for call or WhatsApp actions
+   ================================================ */
+(function attachContactOptions() {
+  const overlay = document.getElementById("contactOverlay");
+  const actionLabel = document.getElementById("contactTitle");
+  const choices = overlay?.querySelectorAll(".contact-choice");
+  const closeButton = overlay?.querySelector(".contact-close");
+  let activeAction = null;
+
+  if (!overlay || !choices || !closeButton) return;
+
+  function openOverlay(type) {
+    activeAction = type;
+    actionLabel.textContent =
+      type === "whatsapp" ? "WhatsApp contact" : "Call contact";
+    overlay.hidden = false;
+  }
+
+  function closeOverlay() {
+    overlay.hidden = true;
+    activeAction = null;
+  }
+
+  document.querySelectorAll(".social-btn[data-action]").forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      const type = btn.dataset.action;
+      openOverlay(type);
+    });
+  });
+
+  choices.forEach((choice) => {
+    choice.addEventListener("click", () => {
+      const number = choice.dataset.number;
+      if (!number) return;
+
+      if (activeAction === "whatsapp") {
+        window.open(
+          `https://wa.me/${number.replace(/\D/g, "")}?text=Hello%20Tech%20Mastery`,
+          "_blank",
+        );
+      } else {
+        window.location.href = `tel:${number.replace(/\D/g, "")}`;
+      }
+      closeOverlay();
+    });
+  });
+
+  closeButton.addEventListener("click", closeOverlay);
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) closeOverlay();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeOverlay();
+  });
+})();
+
+/* ================================================
    3. LINK CLICK TRACKING STUB
    Replace console.log with your analytics call
    e.g. gtag('event', ...) or plausible('click', ...)

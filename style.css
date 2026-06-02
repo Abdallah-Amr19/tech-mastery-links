@@ -438,6 +438,15 @@ body {
 .social-btn:nth-child(3) {
   animation-delay: 0.76s;
 }
+.social-btn:nth-child(4) {
+  animation-delay: 0.88s;
+}
+.social-btn:nth-child(5) {
+  animation-delay: 1s;
+}
+.social-btn:nth-child(6) {
+  animation-delay: 1.12s;
+}
 
 @keyframes slideIn {
   from {
@@ -519,6 +528,119 @@ body {
   transform: translateX(4px);
 }
 
+.contact-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 33, 56, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.contact-popup {
+  width: min(360px, calc(100vw - 32px));
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(15, 33, 56, 0.24);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: popIn 0.18s ease-out both;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.contact-subtitle {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.contact-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.contact-close {
+  border: none;
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+.contact-close:hover {
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.contact-buttons {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-choice {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  background: rgba(47, 70, 101, 0.16);
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.contact-choice:hover {
+  transform: translateY(-1px);
+  background: rgba(47, 70, 101, 0.28);
+}
+
+.contact-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+.contact-overlay[hidden] {
+  display: none;
+}
+
 /* ---- Per-platform gradient overrides ---- */
 
 /* Facebook — deep navy to accent blue */
@@ -556,6 +678,30 @@ body {
 }
 .social-btn--instagram:hover .social-btn__icon {
   background: rgba(47, 70, 101, 0.15);
+}
+
+/* Location — map pin style */
+.social-btn--location {
+  background: linear-gradient(135deg, #1a2c40 0%, var(--primary) 100%);
+}
+.social-btn--location:hover {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+/* Phone — call action */
+.social-btn--phone {
+  background: linear-gradient(135deg, #5e88bd 0%, #7aaad6 100%);
+}
+.social-btn--phone:hover {
+  background: linear-gradient(135deg, #7aaad6 0%, #9cc4eb 100%);
+}
+
+/* WhatsApp — green brand accent */
+.social-btn--whatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #1ebea5 100%);
+}
+.social-btn--whatsapp:hover {
+  background: linear-gradient(135deg, #1ebea5 0%, #12a86e 100%);
 }
 
 /* ---- FOOTER ---- */
