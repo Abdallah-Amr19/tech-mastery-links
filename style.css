@@ -574,7 +574,7 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--white);
   opacity: 0.85;
 }
 
@@ -582,7 +582,7 @@ body {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--white);
 }
 
 .contact-close {
